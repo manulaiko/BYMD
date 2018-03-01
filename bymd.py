@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from youtube_dl import YoutubeDL
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
-from os import listdir
 from glob import glob
 from sys import argv
 from random import choice
@@ -89,7 +88,7 @@ class Kaguya:
         print "Scanning directories..."
 
         self.audios = glob("{0}/*.wav".format(self.audioPath))
-        self.chunks = len(listdir(self.chunksPath))
+        self.chunks = len(glob("{0}/*.wav".format(self.chunksPath)))
 
         print "Found", len(self.audios), "audios and", self.chunks, "chunks."
 
@@ -141,7 +140,7 @@ class Mirai:
     #
     def __init__(self, chunks, mixed):
         self.chunks     = chunks
-        self.chunksList = listdir(chunks)
+        self.chunksList = glob("{0}/*.wav".format(chunks))
         self.mixed      = mixed
 
     ##
@@ -156,11 +155,9 @@ class Mirai:
             pass
 
         print "Generating audio file..."
-        random = "{0}/{1}".format(self.chunks, choice(self.chunksList))
-        audio  = AudioSegment.from_wav(random)
+        audio  = AudioSegment.from_wav(choice(self.chunksList))
         while audio.duration_seconds < length:
-            random = "{0}/{1}".format(self.chunks, choice(self.chunksList))
-            audio = audio + AudioSegment.from_wav(random)
+            audio = audio + AudioSegment.from_wav(choice(self.chunksList))
 
             print "Generated audio:", audio.duration_seconds, "/", length
 
