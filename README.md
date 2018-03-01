@@ -23,3 +23,8 @@ For a full list of arguments, run `python bydm.py -h h`.
 To download videos you need to have [YouTubeDL](https://github.com/rg3/youtube-dl)
 
 This is my first python program, it works for me, if it doesn't for you, fix it yourself :)
+
+Some examples:
+
+ * [Kaguya Luna + Kizuna Ai](https://vocaroo.com/i/s1RhWZO8K0EM)
+ * [Kizuna Ai](https://vocaroo.com/i/s0X74cAsicva)
